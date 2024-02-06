@@ -1,0 +1,2166 @@
+{
+    "AirLoopHVAC": {
+        "VAV-1": {
+            "availability_manager_list_name": "VAV-1 Availability Manager List",
+            "branch_list_name": "VAV-1 Branch List",
+            "demand_side_inlet_node_names": "VAV-1 Zone Equipment Inlet Node",
+            "demand_side_outlet_node_name": "VAV-1 Zone Equipment Outlet Node",
+            "design_supply_air_flow_rate": "Autosize",
+            "supply_side_inlet_node_name": "VAV-1 Supply Equipment Inlet Node",
+            "supply_side_outlet_node_names": "VAV-1 Supply Equipment Outlet Node"
+        }
+    },
+    "AirLoopHVAC:ControllerList": {
+        "VAV-1 OA Controllers": {
+            "controller_1_name": "VAV-1 OA Controller",
+            "controller_1_object_type": "Controller:OutdoorAir"
+        }
+    },
+    "AirLoopHVAC:OutdoorAirSystem": {
+        "VAV-1 OA System": {
+            "controller_list_name": "VAV-1 OA Controllers",
+            "outdoor_air_equipment_list_name": "VAV-1 OA Equipment"
+        }
+    },
+    "AirLoopHVAC:OutdoorAirSystem:EquipmentList": {
+        "VAV-1 OA Equipment": {
+            "component_1_name": "VAV-1 Energy Recovery Wheel",
+            "component_1_object_type": "HeatExchanger:AirToAir:SensibleAndLatent",
+            "component_2_name": "VAV-1 OA Mixer",
+            "component_2_object_type": "OutdoorAir:Mixer"
+        }
+    },
+    "AirLoopHVAC:ReturnPath": {
+        "VAV-1 Return Air Path": {
+            "components": [
+                {
+                    "component_name": "VAV-1 Return Air Mixer",
+                    "component_object_type": "AirLoopHVAC:ZoneMixer"
+                }
+            ],
+            "return_air_path_outlet_node_name": "VAV-1 Zone Equipment Outlet Node"
+        }
+    },
+    "AirLoopHVAC:SupplyPath": {
+        "VAV-1": {
+            "components": [
+                {
+                    "component_name": "VAV-1 Supply Air Splitter",
+                    "component_object_type": "AirLoopHVAC:ZoneSplitter"
+                }
+            ],
+            "supply_air_path_inlet_node_name": "VAV-1 Zone Equipment Inlet Node"
+        }
+    },
+    "AirLoopHVAC:ZoneMixer": {
+        "VAV-1 Return Air Mixer": {
+            "nodes": [
+                {
+                    "inlet_node_name": "Zone A Return Node"
+                }
+            ],
+            "outlet_node_name": "VAV-1 Zone Equipment Outlet Node"
+        }
+    },
+    "AirLoopHVAC:ZoneSplitter": {
+        "VAV-1 Supply Air Splitter": {
+            "inlet_node_name": "VAV-1 Zone Equipment Inlet Node",
+            "nodes": [
+                {
+                    "outlet_node_name": "Zone A ATU Inlet Node"
+                }
+            ]
+        }
+    },
+    "AirTerminal:SingleDuct:VAV:Reheat": {
+        "Zone A ATU": {
+            "air_inlet_node_name": "Zone A ATU Inlet Node",
+            "air_outlet_node_name": "Zone A ATU Outlet Node",
+            "availability_schedule_name": "Zone A Operation Schedule",
+            "constant_minimum_air_flow_fraction": "Autosize",
+            "convergence_tolerance": 0.001,
+            "damper_air_outlet_node_name": "Zone A ATU Damper Outlet Node",
+            "damper_heating_action": "Normal",
+            "maximum_air_flow_rate": "Autosize",
+            "reheat_coil_name": "Zone A fan coilHeat Coil",
+            "reheat_coil_object_type": "Coil:Heating:Electric",
+            "zone_minimum_air_flow_input_method": "Constant"
+        }
+    },
+    "AvailabilityManager:Scheduled": {
+        "VAV-1 Availability Manager": {
+            "schedule_name": "VAV-1 Operation Schedule"
+        }
+    },
+    "AvailabilityManagerAssignmentList": {
+        "VAV-1 Availability Manager List": {
+            "managers": [
+                {
+                    "availability_manager_name": "VAV-1 Availability Manager",
+                    "availability_manager_object_type": "AvailabilityManager:Scheduled"
+                }
+            ]
+        }
+    },
+    "Branch": {
+        "VAV-1 Main Branch": {
+            "components": [
+                {
+                    "component_inlet_node_name": "VAV-1 Supply Equipment Inlet Node",
+                    "component_name": "VAV-1 Return Fan",
+                    "component_object_type": "Fan:VariableVolume",
+                    "component_outlet_node_name": "VAV-1 ExhFan-OA Node"
+                },
+                {
+                    "component_inlet_node_name": "VAV-1 ExhFan-OA Node",
+                    "component_name": "VAV-1 OA System",
+                    "component_object_type": "AirLoopHVAC:OutdoorAirSystem",
+                    "component_outlet_node_name": "VAV-1 OA Outlet Node"
+                },
+                {
+                    "component_inlet_node_name": "VAV-1 OA Outlet Node",
+                    "component_name": "VAV-1 Cooling Coil",
+                    "component_object_type": "CoilSystem:Cooling:DX",
+                    "component_outlet_node_name": "VAV-1 CoolC Air Outlet Node"
+                },
+                {
+                    "component_inlet_node_name": "VAV-1 CoolC Air Outlet Node",
+                    "component_name": "VAV-1 Heating Coil",
+                    "component_object_type": "Coil:Heating:Fuel",
+                    "component_outlet_node_name": "VAV-1 HeatC Air Outlet Node"
+                },
+                {
+                    "component_inlet_node_name": "VAV-1 HeatC Air Outlet Node",
+                    "component_name": "VAV-1 Supply Fan",
+                    "component_object_type": "Fan:VariableVolume",
+                    "component_outlet_node_name": "VAV-1 Supply Equipment Outlet Node"
+                }
+            ]
+        }
+    },
+    "BranchList": {
+        "VAV-1 Branch List": {
+            "branches": [
+                {
+                    "branch_name": "VAV-1 Main Branch"
+                }
+            ]
+        }
+    },
+    "Building": {
+        "simplest": {
+            "loads_convergence_tolerance_value": 0.5,
+            "maximum_number_of_warmup_days": 25,
+            "minimum_number_of_warmup_days": 2,
+            "north_axis": 0,
+            "solar_distribution": "FullInteriorAndExterior",
+            "temperature_convergence_tolerance_value": 0.5,
+            "terrain": "City"
+        }
+    },
+    "BuildingSurface:Detailed": {
+        "9C1049": {
+            "construction_name": "Exterior Wall",
+            "number_of_vertices": 4,
+            "outside_boundary_condition": "Outdoors",
+            "sun_exposure": "SunExposed",
+            "surface_type": "Wall",
+            "vertices": [
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 3.048
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 3.048
+                }
+            ],
+            "wind_exposure": "WindExposed",
+            "zone_name": "Zone A"
+        },
+        "132977": {
+            "construction_name": "Exterior Wall",
+            "number_of_vertices": 4,
+            "outside_boundary_condition": "Outdoors",
+            "sun_exposure": "SunExposed",
+            "surface_type": "Wall",
+            "vertices": [
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 3.048
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 3.048
+                }
+            ],
+            "wind_exposure": "WindExposed",
+            "zone_name": "Zone A"
+        },
+        "774491": {
+            "construction_name": "Exterior Floor",
+            "number_of_vertices": 4,
+            "outside_boundary_condition": "Ground",
+            "sun_exposure": "NoSun",
+            "surface_type": "Floor",
+            "vertices": [
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 0.0
+                }
+            ],
+            "view_factor_to_ground": 0.0,
+            "wind_exposure": "NoWind",
+            "zone_name": "Zone A"
+        },
+        "B70852": {
+            "construction_name": "Exterior Roof",
+            "number_of_vertices": 4,
+            "outside_boundary_condition": "Outdoors",
+            "sun_exposure": "SunExposed",
+            "surface_type": "Roof",
+            "vertices": [
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 3.048
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 3.048
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 3.048
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 3.048
+                }
+            ],
+            "wind_exposure": "WindExposed",
+            "zone_name": "Zone A"
+        },
+        "C622E3": {
+            "construction_name": "Exterior Wall",
+            "number_of_vertices": 4,
+            "outside_boundary_condition": "Outdoors",
+            "sun_exposure": "SunExposed",
+            "surface_type": "Wall",
+            "vertices": [
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 3.048
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 7.950519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 3.048
+                }
+            ],
+            "wind_exposure": "WindExposed",
+            "zone_name": "Zone A"
+        },
+        "CCBE6D": {
+            "construction_name": "Exterior Wall",
+            "number_of_vertices": 4,
+            "outside_boundary_condition": "Outdoors",
+            "sun_exposure": "SunExposed",
+            "surface_type": "Wall",
+            "vertices": [
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 3.048
+                },
+                {
+                    "vertex_x_coordinate": 1.38527,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 0.0
+                },
+                {
+                    "vertex_x_coordinate": 7.48127,
+                    "vertex_y_coordinate": 1.854519,
+                    "vertex_z_coordinate": 3.048
+                }
+            ],
+            "wind_exposure": "WindExposed",
+            "zone_name": "Zone A"
+        }
+    },
+    "Coil:Cooling:DX:TwoSpeed": {
+        "VAV-1 CoolC DXCoil": {
+            "air_inlet_node_name": "VAV-1 OA Outlet Node",
+            "air_outlet_node_name": "VAV-1 CoolC Air Outlet Node",
+            "availability_schedule_name": "VAV-1 Always On Schedule",
+            "condenser_type": "AirCooled",
+            "energy_input_ratio_function_of_flow_fraction_curve_name": "VAV-1 Measured_CoolCStandard10Ton_EIRFFF",
+            "energy_input_ratio_function_of_temperature_curve_name": "VAV-1 Measured_CoolCStandard10Ton_EIRFT",
+            "high_speed_evaporative_condenser_effectiveness": 0.9,
+            "high_speed_gross_rated_cooling_cop": 3.23,
+            "high_speed_gross_rated_total_cooling_capacity": "Autosize",
+            "high_speed_rated_air_flow_rate": "Autosize",
+            "high_speed_rated_sensible_heat_ratio": "Autosize",
+            "low_speed_energy_input_ratio_function_of_temperature_curve_name": "VAV-1 Measured_CoolCStandard10Ton_EIRFT",
+            "low_speed_evaporative_condenser_effectiveness": 0.9,
+            "low_speed_gross_rated_cooling_cop": 3.23,
+            "low_speed_gross_rated_sensible_heat_ratio": "Autosize",
+            "low_speed_gross_rated_total_cooling_capacity": "Autosize",
+            "low_speed_rated_air_flow_rate": "Autosize",
+            "low_speed_total_cooling_capacity_function_of_temperature_curve_name": "VAV-1 Measured_CoolCStandard10Ton_CapFT",
+            "minimum_outdoor_dry_bulb_temperature_for_compressor_operation": -25.0,
+            "part_load_fraction_correlation_curve_name": "VAV-1 No_PLR_Degredation",
+            "total_cooling_capacity_function_of_flow_fraction_curve_name": "VAV-1 Measured_CoolCStandard10Ton_CapFF",
+            "total_cooling_capacity_function_of_temperature_curve_name": "VAV-1 Measured_CoolCStandard10Ton_CapFT"
+        }
+    },
+    "Coil:Heating:Electric": {
+        "Zone A fan coilHeat Coil": {
+            "air_inlet_node_name": "Zone A ATU Damper Outlet Node",
+            "air_outlet_node_name": "Zone A ATU Outlet Node",
+            "availability_schedule_name": "Zone A Operation Schedule",
+            "efficiency": 1.0,
+            "nominal_capacity": "Autosize"
+        }
+    },
+    "Coil:Heating:Fuel": {
+        "VAV-1 Heating Coil": {
+            "air_inlet_node_name": "VAV-1 CoolC Air Outlet Node",
+            "air_outlet_node_name": "VAV-1 HeatC Air Outlet Node",
+            "availability_schedule_name": "VAV-1 Always On Schedule",
+            "burner_efficiency": 0.8,
+            "fuel_type": "NaturalGas",
+            "nominal_capacity": "Autosize",
+            "temperature_setpoint_node_name": "VAV-1 HeatC Air Outlet Node"
+        }
+    },
+    "CoilSystem:Cooling:DX": {
+        "VAV-1 Cooling Coil": {
+            "availability_schedule_name": "VAV-1 Always On Schedule",
+            "cooling_coil_name": "VAV-1 CoolC DXCoil",
+            "cooling_coil_object_type": "Coil:Cooling:DX:TwoSpeed",
+            "dx_cooling_coil_system_inlet_node_name": "VAV-1 OA Outlet Node",
+            "dx_cooling_coil_system_outlet_node_name": "VAV-1 CoolC Air Outlet Node",
+            "dx_cooling_coil_system_sensor_node_name": "VAV-1 CoolC Air Outlet Node"
+        }
+    },
+    "Construction": {
+        "Air Space Window": {
+            "outside_layer": "Air Space Glazing"
+        },
+        "Attic Floor": {
+            "layer_2": "Plywood",
+            "outside_layer": "Gypsum 5/8in"
+        },
+        "AtticFloor1": {
+            "layer_2": "AtticFloor Insulation",
+            "layer_3": "Gypsum 5/8in",
+            "outside_layer": "Gypsum 5/8in"
+        },
+        "Basement Wall": {
+            "layer_2": "Concrete HW Solid 8in",
+            "outside_layer": "Gypsum 5/8in"
+        },
+        "Drop Ceiling": {
+            "outside_layer": "Drop-Ceiling Acoustic Tile"
+        },
+        "Exterior Floor": {
+            "layer_2": "Carpet",
+            "outside_layer": "Concrete HW Solid 6in"
+        },
+        "Exterior Floor Slab": {
+            "outside_layer": "Concrete HW Solid 8in"
+        },
+        "Exterior Light Shelf": {
+            "outside_layer": "Concrete HW Solid 2in White"
+        },
+        "Exterior Roof": {
+            "layer_2": "Roof Continuous Insulation",
+            "layer_3": "Metal Decking",
+            "outside_layer": "Roof Membrane"
+        },
+        "Exterior Skylight": {
+            "outside_layer": "Theoretical Skylight Glazing"
+        },
+        "Exterior Slab": {
+            "layer_2": "Carpet",
+            "outside_layer": "Concrete HW Solid 6in"
+        },
+        "Exterior Wall": {
+            "layer_2": "Wall Continuous Insulation",
+            "layer_3": "Wall Cavity Effective Insulation",
+            "layer_4": "Gypsum 5/8in",
+            "outside_layer": "Stucco"
+        },
+        "Exterior Window": {
+            "outside_layer": "Theoretical Glazing"
+        },
+        "Glass Door": {
+            "outside_layer": "Clear Glass"
+        },
+        "Insulated Interior Wall": {
+            "layer_2": "Wall Insulation 4in R-19",
+            "layer_3": "Gypsum 5/8in",
+            "outside_layer": "Gypsum 5/8in"
+        },
+        "Interior Ceiling": {
+            "layer_2": "Concrete MW Solid 4in",
+            "outside_layer": "Carpet"
+        },
+        "Interior Ceiling To Attic": {
+            "layer_2": "Gypsum 5/8in",
+            "outside_layer": "Plywood"
+        },
+        "Interior Floor": {
+            "layer_2": "Carpet",
+            "outside_layer": "Concrete MW Solid 4in"
+        },
+        "Interior Furnishings": {
+            "outside_layer": "Wood 6in"
+        },
+        "Interior Wall": {
+            "layer_2": "Air Space",
+            "layer_3": "Gypsum 5/8in",
+            "outside_layer": "Gypsum 5/8in"
+        },
+        "Light Shelf Window": {
+            "outside_layer": "Clear Glass"
+        },
+        "MetalSlabDoor": {
+            "layer_2": "Air-gap:0.1300",
+            "layer_3": "Metal Door",
+            "outside_layer": "Metal Door"
+        },
+        "Overhead Door": {
+            "outside_layer": "Overhead Door Panel"
+        },
+        "Perimeter Air Wall": {
+            "outside_layer": "Perimeter Buffer"
+        },
+        "Radiant Attic Floor": {
+            "layer_2": "Plywood",
+            "outside_layer": "Gypsum 5/8in"
+        },
+        "Radiant Exterior Roof": {
+            "layer_2": "Roof Continuous Insulation",
+            "layer_3": "Metal Decking",
+            "outside_layer": "Roof Membrane"
+        },
+        "Radiant Interior Ceiling": {
+            "layer_2": "Concrete MW Solid 4in",
+            "outside_layer": "Carpet"
+        },
+        "Radiant Interior Ceiling To Attic": {
+            "layer_2": "Gypsum 5/8in",
+            "outside_layer": "Plywood"
+        },
+        "Radiant Interior Floor": {
+            "layer_2": "Carpet",
+            "outside_layer": "Concrete MW Solid 4in"
+        },
+        "Slab Footing": {
+            "outside_layer": "Concrete NW Solid 6in"
+        },
+        "Soffit Floor": {
+            "layer_2": "Concrete HW Solid 8in",
+            "layer_3": "Carpet",
+            "outside_layer": "Floor Insulation"
+        },
+        "TDD Diffuser": {
+            "outside_layer": "Diffusing Acrylic Plastic"
+        },
+        "TDD Dome": {
+            "outside_layer": "Clear Acrylic Plastic"
+        },
+        "TDD Pipe": {
+            "outside_layer": "Very High Reflectivity Surface"
+        },
+        "Wood Door": {
+            "outside_layer": "Wood Door Panel"
+        }
+    },
+    "Controller:OutdoorAir": {
+        "VAV-1 OA Controller": {
+            "actuator_node_name": "VAV-1 Outside Air Inlet Node",
+            "economizer_control_action_type": "ModulateFlow",
+            "economizer_control_type": "FixedDryBulb",
+            "economizer_maximum_limit_dry_bulb_temperature": 23.88888888888889,
+            "economizer_minimum_limit_dry_bulb_temperature": 4.44,
+            "heat_recovery_bypass_control_type": "BypassWhenWithinEconomizerLimits",
+            "lockout_type": "LockoutWithHeating",
+            "maximum_outdoor_air_flow_rate": "Autosize",
+            "minimum_limit_type": "FixedMinimum",
+            "minimum_outdoor_air_flow_rate": "Autosize",
+            "minimum_outdoor_air_schedule_name": "VAV-1 Outdoor Air Schedule",
+            "mixed_air_node_name": "VAV-1 OA Outlet Node",
+            "relief_air_outlet_node_name": "VAV-1 OA Relief Node",
+            "return_air_node_name": "VAV-1 ExhFan-OA Node"
+        }
+    },
+    "ConvergenceLimits": {
+        "ConvergenceLimits 1": {
+            "maximum_hvac_iterations": 25,
+            "minimum_system_timestep": 1
+        }
+    },
+    "Curve:Biquadratic": {
+        "VAV-1 Measured_CoolCStandard10Ton_CapFT": {
+            "coefficient1_constant": 0.52357,
+            "coefficient2_x": 0.03478,
+            "coefficient3_x_2": 0,
+            "coefficient4_y": -0.001915,
+            "coefficient5_y_2": -0.00010838,
+            "coefficient6_x_y": 0,
+            "maximum_value_of_x": 29.4,
+            "maximum_value_of_y": 50.3,
+            "minimum_value_of_x": 11.1,
+            "minimum_value_of_y": 10.0
+        },
+        "VAV-1 Measured_CoolCStandard10Ton_EIRFT": {
+            "coefficient1_constant": 0.9847,
+            "coefficient2_x": -0.04285,
+            "coefficient3_x_2": 0.0013562,
+            "coefficient4_y": 0.009934,
+            "coefficient5_y_2": 0.0006398,
+            "coefficient6_x_y": -0.001169,
+            "maximum_value_of_x": 29.4,
+            "maximum_value_of_y": 50.3,
+            "minimum_value_of_x": 11.1,
+            "minimum_value_of_y": 10.0
+        }
+    },
+    "Curve:Quadratic": {
+        "VAV-1 Measured_CoolCStandard10Ton_CapFF": {
+            "coefficient1_constant": 0.7685,
+            "coefficient2_x": 0.2315,
+            "coefficient3_x_2": 0,
+            "maximum_value_of_x": 1.197,
+            "minimum_value_of_x": 0.776
+        },
+        "VAV-1 Measured_CoolCStandard10Ton_EIRFFF": {
+            "coefficient1_constant": 1.192,
+            "coefficient2_x": -0.1917,
+            "coefficient3_x_2": 0,
+            "maximum_value_of_x": 1.197,
+            "minimum_value_of_x": 0.776
+        },
+        "VAV-1 No_PLR_Degredation": {
+            "coefficient1_constant": 1.0,
+            "coefficient2_x": 0,
+            "coefficient3_x_2": 0,
+            "maximum_value_of_x": 1.0,
+            "minimum_value_of_x": 0.0
+        }
+    },
+    "DesignSpecification:OutdoorAir": {
+        "Zone A Design OA": {
+            "outdoor_air_flow_per_person": 0.0,
+            "outdoor_air_flow_per_zone": 0.0,
+            "outdoor_air_flow_per_zone_floor_area": 0.0,
+            "outdoor_air_method": "Sum"
+        }
+    },
+    "ElectricEquipment": {
+        "Zone A Elec Equip": {
+            "design_level_calculation_method": "Watts/Area",
+            "end_use_subcategory": "GeneralEquipment",
+            "fraction_latent": 0,
+            "fraction_lost": 0,
+            "fraction_radiant": 0.5,
+            "schedule_name": "Zone A Elec Equip Sch",
+            "watts_per_zone_floor_area": 5.381955208354861,
+            "zone_or_zonelist_or_space_or_spacelist_name": "Zone A"
+        }
+    },
+    "EnergyManagementSystem:OutputVariable": {
+        "Electricity Facility EMS": {
+            "ems_program_or_subroutine_name": "NetMeterProgram",
+            "ems_variable_name": "EF",
+            "type_of_data_in_variable": "Summed",
+            "units": "J",
+            "update_frequency": "ZoneTimestep"
+        }
+    },
+    "EnergyManagementSystem:Program": {
+        "NetMeterProgram": {
+            "lines": [
+                {
+                    "program_line": "Set EF = EFC_meter"
+                }
+            ]
+        }
+    },
+    "EnergyManagementSystem:ProgramCallingManager": {
+        "OutputReporting": {
+            "energyplus_model_calling_point": "EndOfSystemTimestepBeforeHVACReporting",
+            "programs": [
+                {
+                    "program_name": "NetMeterProgram"
+                }
+            ]
+        }
+    },
+    "EnergyManagementSystem:Sensor": {
+        "EFC_meter": {
+            "output_variable_or_output_meter_name": "Electricity:Facility"
+        }
+    },
+    "EnvironmentalImpactFactors": {
+        "EnvironmentalImpactFactors 1": {
+            "district_cooling_cop": 3.180952,
+            "district_heating_efficiency": 0.775556,
+            "steam_conversion_efficiency": 0.722069,
+            "total_carbon_equivalent_emission_factor_from_ch4": 6.2727,
+            "total_carbon_equivalent_emission_factor_from_co2": 0.2727,
+            "total_carbon_equivalent_emission_factor_from_n2o": 80.7272
+        }
+    },
+    "Fan:VariableVolume": {
+        "VAV-1 Return Fan": {
+            "air_inlet_node_name": "VAV-1 Supply Equipment Inlet Node",
+            "air_outlet_node_name": "VAV-1 ExhFan-OA Node",
+            "availability_schedule_name": "VAV-1 Operation Schedule",
+            "fan_power_coefficient_1": 0.0013,
+            "fan_power_coefficient_2": 0.147,
+            "fan_power_coefficient_3": 0.9506,
+            "fan_power_coefficient_4": -0.0998,
+            "fan_power_coefficient_5": 0.0,
+            "fan_power_minimum_flow_fraction": 0.0,
+            "fan_power_minimum_flow_rate_input_method": "Fraction",
+            "fan_total_efficiency": 0.65,
+            "maximum_flow_rate": "Autosize",
+            "motor_efficiency": 0.85,
+            "motor_in_airstream_fraction": 1.0,
+            "pressure_rise": 560.45025
+        },
+        "VAV-1 Supply Fan": {
+            "air_inlet_node_name": "VAV-1 HeatC Air Outlet Node",
+            "air_outlet_node_name": "VAV-1 Supply Equipment Outlet Node",
+            "availability_schedule_name": "VAV-1 Operation Schedule",
+            "fan_power_coefficient_1": 0.0013,
+            "fan_power_coefficient_2": 0.147,
+            "fan_power_coefficient_3": 0.9506,
+            "fan_power_coefficient_4": -0.0998,
+            "fan_power_coefficient_5": 0.0,
+            "fan_power_minimum_flow_fraction": 0.3,
+            "fan_power_minimum_flow_rate_input_method": "Fraction",
+            "fan_total_efficiency": 0.65,
+            "maximum_flow_rate": "Autosize",
+            "motor_efficiency": 0.85,
+            "motor_in_airstream_fraction": 1.0,
+            "pressure_rise": 747.267
+        }
+    },
+    "FenestrationSurface:Detailed": {
+        "6738BF": {
+            "building_surface_name": "CCBE6D",
+            "construction_name": "Exterior Window",
+            "number_of_vertices": "Autocalculate",
+            "surface_type": "Window",
+            "vertex_1_x_coordinate": 2.29967,
+            "vertex_1_y_coordinate": 1.854519,
+            "vertex_1_z_coordinate": 2.4384,
+            "vertex_2_x_coordinate": 2.29967,
+            "vertex_2_y_coordinate": 1.854519,
+            "vertex_2_z_coordinate": 1.2192,
+            "vertex_3_x_coordinate": 6.56687,
+            "vertex_3_y_coordinate": 1.854519,
+            "vertex_3_z_coordinate": 1.2192,
+            "view_factor_to_ground": "Autocalculate"
+        }
+    },
+    "FuelFactors": {
+        "FuelFactors 1": {
+            "existing_fuel_resource_name": "Electricity",
+            "source_energy_factor": 3.34
+        },
+        "FuelFactors 2": {
+            "existing_fuel_resource_name": "NaturalGas",
+            "source_energy_factor": 1.047
+        },
+        "FuelFactors 3": {
+            "existing_fuel_resource_name": "FuelOilNo1",
+            "source_energy_factor": 1.01
+        },
+        "FuelFactors 4": {
+            "existing_fuel_resource_name": "FuelOilNo2",
+            "source_energy_factor": 1.01
+        },
+        "FuelFactors 5": {
+            "existing_fuel_resource_name": "Propane",
+            "source_energy_factor": 1.01
+        },
+        "FuelFactors 6": {
+            "existing_fuel_resource_name": "Diesel",
+            "source_energy_factor": 1.01
+        }
+    },
+    "GlobalGeometryRules": {
+        "GlobalGeometryRules 1": {
+            "coordinate_system": "Relative",
+            "daylighting_reference_point_coordinate_system": "Relative",
+            "rectangular_surface_coordinate_system": "Relative",
+            "starting_vertex_position": "UpperLeftCorner",
+            "vertex_entry_direction": "Counterclockwise"
+        }
+    },
+    "HeatBalanceAlgorithm": {
+        "HeatBalanceAlgorithm 1": {
+            "algorithm": "ConductionTransferFunction"
+        }
+    },
+    "HeatExchanger:AirToAir:SensibleAndLatent": {
+        "VAV-1 Energy Recovery Wheel": {
+            "availability_schedule_name": "VAV-1 Always On Schedule",
+            "economizer_lockout": "Yes",
+            "exhaust_air_inlet_node_name": "VAV-1 OA Relief Node",
+            "exhaust_air_outlet_node_name": "VAV-1 ER Exhaust Outlet Node",
+            "frost_control_type": "None",
+            "heat_exchanger_type": "Rotary",
+            "latent_effectiveness_at_75_cooling_air_flow": 0.7,
+            "latent_effectiveness_at_75_heating_air_flow": 0.7,
+            "latent_effectiveness_at_100_cooling_air_flow": 0.7,
+            "latent_effectiveness_at_100_heating_air_flow": 0.7,
+            "nominal_electric_power": 260,
+            "nominal_supply_air_flow_rate": "Autosize",
+            "sensible_effectiveness_at_75_cooling_air_flow": 0.7,
+            "sensible_effectiveness_at_75_heating_air_flow": 0.7,
+            "sensible_effectiveness_at_100_cooling_air_flow": 0.7,
+            "sensible_effectiveness_at_100_heating_air_flow": 0.7,
+            "supply_air_inlet_node_name": "VAV-1 Outside Air Inlet Node",
+            "supply_air_outlet_node_name": "VAV-1 ER Supply Outlet Node",
+            "supply_air_outlet_temperature_control": "Yes"
+        }
+    },
+    "Lights": {
+        "Zone A Lighting": {
+            "design_level_calculation_method": "Watts/Area",
+            "end_use_subcategory": "GeneralLights",
+            "fraction_radiant": 0.7,
+            "fraction_replaceable": 1,
+            "fraction_visible": 0.2,
+            "return_air_fraction": 0,
+            "schedule_name": "Zone A Lighting Schedule",
+            "watts_per_zone_floor_area": 11.840301458380695,
+            "zone_or_zonelist_or_space_or_spacelist_name": "Zone A"
+        }
+    },
+    "Material": {
+        "Asphalt Shingles": {
+            "conductivity": 0.04,
+            "density": 1120,
+            "roughness": "VeryRough",
+            "specific_heat": 1260,
+            "thickness": 0.0032
+        },
+        "AtticFloor Insulation": {
+            "conductivity": 0.045,
+            "density": 265.0,
+            "roughness": "MediumRough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.2377,
+            "visible_absorptance": 0.7
+        },
+        "Brick Veneer": {
+            "conductivity": 0.89,
+            "density": 1920,
+            "roughness": "MediumRough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 790,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.1016,
+            "visible_absorptance": 0.7
+        },
+        "Carpet": {
+            "conductivity": 0.06,
+            "density": 288,
+            "roughness": "VeryRough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 1380,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.0127,
+            "visible_absorptance": 0.8
+        },
+        "Concrete Block Veneer": {
+            "conductivity": 0.53,
+            "density": 1280,
+            "roughness": "MediumRough",
+            "specific_heat": 840,
+            "thickness": 0.1016
+        },
+        "Concrete HW Solid 2in White": {
+            "conductivity": 1.729577,
+            "density": 2242.585,
+            "roughness": "MediumRough",
+            "solar_absorptance": 0.3,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.050901599,
+            "visible_absorptance": 0.3
+        },
+        "Concrete HW Solid 6in": {
+            "conductivity": 1.311,
+            "density": 2240,
+            "roughness": "Rough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.1524,
+            "visible_absorptance": 0.7
+        },
+        "Concrete HW Solid 8in": {
+            "conductivity": 1.311,
+            "density": 2240,
+            "roughness": "Rough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.2032,
+            "visible_absorptance": 0.7
+        },
+        "Concrete MW Partially Grouted 8in": {
+            "conductivity": 0.935,
+            "density": 1968,
+            "roughness": "Rough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.2032,
+            "visible_absorptance": 0.2
+        },
+        "Concrete MW Solid 4in": {
+            "conductivity": 0.858,
+            "density": 1968,
+            "roughness": "Rough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.1016,
+            "visible_absorptance": 0.2
+        },
+        "Concrete MW Solid Grouted 6in": {
+            "conductivity": 1.32,
+            "density": 1968,
+            "roughness": "Rough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.1524,
+            "visible_absorptance": 0.2
+        },
+        "Concrete MW Solid Grouted 8in": {
+            "conductivity": 1.32,
+            "density": 1968,
+            "roughness": "Rough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.2032,
+            "visible_absorptance": 0.2
+        },
+        "Concrete NW Solid 6in": {
+            "conductivity": 2.3075,
+            "density": 1968,
+            "roughness": "Rough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.1524,
+            "visible_absorptance": 0.2
+        },
+        "Concrete NW Solid 8in": {
+            "conductivity": 2.3075,
+            "density": 1968,
+            "roughness": "Rough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.2032,
+            "visible_absorptance": 0.2
+        },
+        "Drop-Ceiling Acoustic Tile": {
+            "conductivity": 0.06,
+            "density": 368,
+            "roughness": "MediumSmooth",
+            "solar_absorptance": 0.3,
+            "specific_heat": 590,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.0191,
+            "visible_absorptance": 0.3
+        },
+        "Floor Insulation": {
+            "conductivity": 0.045,
+            "density": 265.0,
+            "roughness": "MediumRough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 836.8,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.0795,
+            "visible_absorptance": 0.7
+        },
+        "Granite 10in": {
+            "conductivity": 4.3,
+            "density": 2880,
+            "roughness": "MediumRough",
+            "specific_heat": 790,
+            "thickness": 0.254
+        },
+        "Gypsum 1/2in": {
+            "conductivity": 0.1622,
+            "density": 800,
+            "roughness": "MediumSmooth",
+            "solar_absorptance": 0.7,
+            "specific_heat": 1090,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.0127,
+            "visible_absorptance": 0.7
+        },
+        "Gypsum 5/8in": {
+            "conductivity": 0.1622,
+            "density": 800,
+            "roughness": "MediumSmooth",
+            "solar_absorptance": 0.7,
+            "specific_heat": 1090,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.016,
+            "visible_absorptance": 0.7
+        },
+        "Metal Decking": {
+            "conductivity": 45,
+            "density": 7689,
+            "roughness": "MediumSmooth",
+            "solar_absorptance": 0.7,
+            "specific_heat": 418,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.0015,
+            "visible_absorptance": 0.3
+        },
+        "Metal Door": {
+            "conductivity": 45.31492,
+            "density": 7833.028,
+            "roughness": "Smooth",
+            "solar_absorptance": 0.5,
+            "specific_heat": 502.08,
+            "thermal_absorptance": 0.8,
+            "thickness": 0.0013106,
+            "visible_absorptance": 0.5
+        },
+        "Metal Roof": {
+            "conductivity": 45,
+            "density": 7689,
+            "roughness": "Smooth",
+            "solar_absorptance": 0.7,
+            "specific_heat": 418,
+            "thermal_absorptance": 0.85,
+            "thickness": 0.0015,
+            "visible_absorptance": 0.7
+        },
+        "Metal Siding": {
+            "conductivity": 45,
+            "density": 7689,
+            "roughness": "Smooth",
+            "solar_absorptance": 0.7,
+            "specific_heat": 418,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.0015,
+            "visible_absorptance": 0.7
+        },
+        "Perimeter Buffer": {
+            "conductivity": 1000.0,
+            "density": 0.001,
+            "roughness": "MediumSmooth",
+            "solar_absorptance": 0.999,
+            "specific_heat": 100.0,
+            "thermal_absorptance": 0.999,
+            "thickness": 0.001,
+            "visible_absorptance": 0.999
+        },
+        "Plaster 1/4in": {
+            "conductivity": 0.58,
+            "density": 800,
+            "roughness": "MediumSmooth",
+            "solar_absorptance": 0.7,
+            "specific_heat": 1090,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.00635,
+            "visible_absorptance": 0.7
+        },
+        "Plywood": {
+            "conductivity": 0.12,
+            "density": 540,
+            "roughness": "MediumSmooth",
+            "solar_absorptance": 0.78,
+            "specific_heat": 1210,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.019099999,
+            "visible_absorptance": 0.78
+        },
+        "Rigid Insulation 1in": {
+            "conductivity": 0.0288,
+            "density": 29,
+            "roughness": "MediumSmooth",
+            "specific_heat": 1210,
+            "thickness": 0.0254
+        },
+        "Roof Cavity Effective Insulation": {
+            "conductivity": 0.0459,
+            "density": 8.17,
+            "roughness": "VeryRough",
+            "specific_heat": 837,
+            "thickness": 0.0001
+        },
+        "Roof Continuous Insulation": {
+            "conductivity": 0.0288,
+            "density": 32,
+            "roughness": "VeryRough",
+            "specific_heat": 1465,
+            "thickness": 0.1014336
+        },
+        "Roof Membrane": {
+            "conductivity": 0.16,
+            "density": 1121.29,
+            "roughness": "VeryRough",
+            "solar_absorptance": 0.7,
+            "specific_heat": 1460.0,
+            "thermal_absorptance": 0.85,
+            "thickness": 0.0095,
+            "visible_absorptance": 0.7
+        },
+        "Spandrel Glass": {
+            "conductivity": 0.99,
+            "density": 2528,
+            "roughness": "Smooth",
+            "specific_heat": 880,
+            "thickness": 0.0064
+        },
+        "Stone Slab": {
+            "conductivity": 1.14,
+            "density": 1920,
+            "roughness": "MediumRough",
+            "specific_heat": 900,
+            "thickness": 0.051
+        },
+        "Stucco": {
+            "conductivity": 0.72,
+            "density": 1856,
+            "roughness": "Smooth",
+            "solar_absorptance": 0.7,
+            "specific_heat": 840,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.01015,
+            "visible_absorptance": 0.7
+        },
+        "Tile": {
+            "conductivity": 1.59,
+            "density": 1920,
+            "roughness": "VeryRough",
+            "specific_heat": 1260,
+            "thickness": 0.0127
+        },
+        "Very High Reflectivity Surface": {
+            "conductivity": 237,
+            "density": 2702,
+            "roughness": "Smooth",
+            "solar_absorptance": 0.05,
+            "specific_heat": 903,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.0005,
+            "visible_absorptance": 0.05
+        },
+        "Wall Cavity Effective Insulation": {
+            "conductivity": 0.08389829384297165,
+            "density": 8.17,
+            "roughness": "VeryRough",
+            "specific_heat": 837,
+            "thickness": 0.08889999999999999
+        },
+        "Wall Continuous Insulation": {
+            "conductivity": 0.0288,
+            "density": 32,
+            "roughness": "MediumSmooth",
+            "specific_heat": 1465,
+            "thickness": 0.038037600000000005
+        },
+        "Wall Insulation 4in R-19": {
+            "conductivity": 0.0288,
+            "density": 29,
+            "roughness": "MediumSmooth",
+            "specific_heat": 1210,
+            "thickness": 0.1
+        },
+        "Wood 6in": {
+            "conductivity": 0.12,
+            "density": 540,
+            "roughness": "MediumSmooth",
+            "solar_absorptance": 0.7,
+            "specific_heat": 1210,
+            "thermal_absorptance": 0.9,
+            "thickness": 0.15,
+            "visible_absorptance": 0.7
+        },
+        "Wood Door Panel": {
+            "conductivity": 0.0873267038564152,
+            "density": 512.64,
+            "roughness": "Rough",
+            "specific_heat": 1214.23,
+            "thickness": 0.0633984
+        },
+        "Wood Shingles": {
+            "conductivity": 0.04,
+            "density": 592,
+            "roughness": "VeryRough",
+            "specific_heat": 1300,
+            "thickness": 0.0064
+        },
+        "Wood Siding": {
+            "conductivity": 0.09,
+            "density": 592,
+            "roughness": "MediumSmooth",
+            "specific_heat": 1170,
+            "thickness": 0.0127
+        }
+    },
+    "Material:AirGap": {
+        "Air Space": {
+            "thermal_resistance": 0.16
+        },
+        "Air-gap:0.1300": {
+            "thermal_resistance": 0.13
+        }
+    },
+    "Material:NoMass": {
+        "Overhead Door Panel": {
+            "roughness": "MediumRough",
+            "solar_absorptance": 0.7,
+            "thermal_absorptance": 0.9,
+            "thermal_resistance": 0.001,
+            "visible_absorptance": 0.7
+        }
+    },
+    "NodeList": {
+        "VAV-1 HeatC Setpoint Nodes": {
+            "nodes": [
+                {
+                    "node_name": "VAV-1 CoolC Air Outlet Node"
+                },
+                {
+                    "node_name": "VAV-1 HeatC Air Outlet Node"
+                },
+                {
+                    "node_name": "VAV-1 OA Outlet Node"
+                }
+            ]
+        },
+        "VAV-1 OA Setpoint Nodes": {
+            "nodes": [
+                {
+                    "node_name": "VAV-1 ER Supply Outlet Node"
+                },
+                {
+                    "node_name": "VAV-1 Outside Air Inlet Node"
+                }
+            ]
+        }
+    },
+    "OutdoorAir:Mixer": {
+        "VAV-1 OA Mixer": {
+            "mixed_air_node_name": "VAV-1 OA Outlet Node",
+            "outdoor_air_stream_node_name": "VAV-1 ER Supply Outlet Node",
+            "relief_air_stream_node_name": "VAV-1 OA Relief Node",
+            "return_air_stream_node_name": "VAV-1 ExhFan-OA Node"
+        }
+    },
+    "OutdoorAir:Node": {
+        "VAV-1 Outside Air Inlet Node": {}
+    },
+    "Output:Constructions": {
+        "Output:Constructions 1": {
+            "details_type_1": "Constructions"
+        }
+    },
+    "Output:Diagnostics": {
+        "Output:Diagnostics 1": {
+            "diagnostics": [
+                {
+                    "key": "DisplayExtraWarnings"
+                }
+            ]
+        }
+    },
+    "Output:SQLite": {
+        "Output:SQLite 1": {
+            "option_type": "SimpleAndTabular"
+        }
+    },
+    "Output:Surfaces:Drawing": {
+        "Output:Surfaces:Drawing 1": {
+            "report_type": "DXF"
+        }
+    },
+    "Output:Surfaces:List": {
+        "Output:Surfaces:List 1": {
+            "report_type": "Details"
+        }
+    },
+    "Output:Table:SummaryReports": {
+        "Output:Table:SummaryReports 1": {
+            "reports": [
+                {
+                    "report_name": "AnnualBuildingUtilityPerformanceSummary"
+                },
+                {
+                    "report_name": "InputVerificationandResultsSummary"
+                },
+                {
+                    "report_name": "ClimaticDataSummary"
+                },
+                {
+                    "report_name": "EnvelopeSummary"
+                },
+                {
+                    "report_name": "EquipmentSummary"
+                },
+                {
+                    "report_name": "ComponentSizingSummary"
+                },
+                {
+                    "report_name": "HVACSizingSummary"
+                },
+                {
+                    "report_name": "LightingSummary"
+                },
+                {
+                    "report_name": "DXReportMonthly"
+                },
+                {
+                    "report_name": "SystemSummary"
+                },
+                {
+                    "report_name": "ZoneComponentLoadSummary"
+                },
+                {
+                    "report_name": "SensibleHeatGainSummary"
+                },
+                {
+                    "report_name": "EnergyConsumptionElectricityNaturalGasMonthly"
+                },
+                {
+                    "report_name": "EndUseEnergyConsumptionElectricityMonthly"
+                },
+                {
+                    "report_name": "EnergyConsumptionDieselFuelOilMonthly"
+                },
+                {
+                    "report_name": "EnergyConsumptionElectricityGeneratedPropaneMonthly"
+                },
+                {
+                    "report_name": "EnergyConsumptionCoalGasolineMonthly"
+                },
+                {
+                    "report_name": "EndUseEnergyConsumptionElectricityMonthly"
+                },
+                {
+                    "report_name": "EndUseEnergyConsumptionNaturalGasMonthly"
+                },
+                {
+                    "report_name": "EndUseEnergyConsumptionDieselMonthly"
+                },
+                {
+                    "report_name": "EndUseEnergyConsumptionFuelOilMonthly"
+                },
+                {
+                    "report_name": "EndUseEnergyConsumptionCoalMonthly"
+                },
+                {
+                    "report_name": "EndUseEnergyConsumptionPropaneMonthly"
+                },
+                {
+                    "report_name": "EndUseEnergyConsumptionGasolineMonthly"
+                },
+                {
+                    "report_name": "ZoneCoolingSummaryMonthly"
+                },
+                {
+                    "report_name": "ZoneHeatingSummaryMonthly"
+                }
+            ]
+        }
+    },
+    "Output:VariableDictionary": {
+        "Output:VariableDictionary 1": {
+            "key_field": "IDF"
+        }
+    },
+    "OutputControl:ReportingTolerances": {
+        "OutputControl:ReportingTolerances 1": {
+            "tolerance_for_time_cooling_setpoint_not_met": 1.1111111111111112,
+            "tolerance_for_time_heating_setpoint_not_met": 1.1111111111111112
+        }
+    },
+    "OutputControl:Table:Style": {
+        "OutputControl:Table:Style 1": {
+            "column_separator": "CommaAndHTML",
+            "unit_conversion": "InchPound"
+        }
+    },
+    "People": {
+        "Zone A People": {
+            "activity_level_schedule_name": "Zone A Activity Sch",
+            "fraction_radiant": 0.3,
+            "number_of_people_calculation_method": "People/Area",
+            "number_of_people_schedule_name": "Zone A Occupant Sch",
+            "people_per_floor_area": 0.04305564166683889,
+            "zone_or_zonelist_or_space_or_spacelist_name": "Zone A"
+        }
+    },
+    "RunPeriod": {
+        "Annual": {
+            "apply_weekend_holiday_rule": "No",
+            "begin_day_of_month": 1,
+            "begin_month": 1,
+            "day_of_week_for_start_day": "Sunday",
+            "end_day_of_month": 31,
+            "end_month": 12,
+            "use_weather_file_daylight_saving_period": "No",
+            "use_weather_file_holidays_and_special_days": "No",
+            "use_weather_file_rain_indicators": "Yes",
+            "use_weather_file_snow_indicators": "Yes"
+        }
+    },
+    "Schedule:Compact": {
+        "VAV-1 Operation Schedule": {
+            "data": [
+                {
+                    "field": "Through: 12/31"
+                },
+                {
+                    "field": "For: AllDays"
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 1.0
+                }
+            ],
+            "schedule_type_limits_name": "On/Off"
+        },
+        "VAV-1 Outdoor Air Schedule": {
+            "data": [
+                {
+                    "field": "Through: 12/31"
+                },
+                {
+                    "field": "For: AllDays"
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 1.0
+                }
+            ],
+            "schedule_type_limits_name": "On/Off"
+        },
+        "Zone A Elec Equip Sch": {
+            "data": [
+                {
+                    "field": "Through: 12/31"
+                },
+                {
+                    "field": "For: Weekdays SummerDesignDay"
+                },
+                {
+                    "field": "Until: 08:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "Until: 12:00"
+                },
+                {
+                    "field": 0.9
+                },
+                {
+                    "field": "Until: 13:00"
+                },
+                {
+                    "field": 0.8
+                },
+                {
+                    "field": "Until: 17:00"
+                },
+                {
+                    "field": 0.9
+                },
+                {
+                    "field": "Until: 18:00"
+                },
+                {
+                    "field": 0.5
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "For: WinterDesignDay"
+                },
+                {
+                    "field": "Until: 06:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "Until: 08:00"
+                },
+                {
+                    "field": 0.4
+                },
+                {
+                    "field": "Until: 12:00"
+                },
+                {
+                    "field": 0.5
+                },
+                {
+                    "field": "Until: 17:00"
+                },
+                {
+                    "field": 0.35
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "For: Saturday Sunday Holidays AllOtherDays"
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.3
+                }
+            ],
+            "schedule_type_limits_name": "Any Number"
+        },
+        "Zone A Infiltration Schedule": {
+            "data": [
+                {
+                    "field": "Through: 12/31"
+                },
+                {
+                    "field": "For: AllDays"
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 1.0
+                }
+            ],
+            "schedule_type_limits_name": "Any Number"
+        },
+        "Zone A Lighting Schedule": {
+            "data": [
+                {
+                    "field": "Through: 12/31"
+                },
+                {
+                    "field": "For: Weekdays SummerDesignDay"
+                },
+                {
+                    "field": "Until: 05:00"
+                },
+                {
+                    "field": 0.05
+                },
+                {
+                    "field": "Until: 07:00"
+                },
+                {
+                    "field": 0.1
+                },
+                {
+                    "field": "Until: 08:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "Until: 17:00"
+                },
+                {
+                    "field": 0.9
+                },
+                {
+                    "field": "Until: 18:00"
+                },
+                {
+                    "field": 0.5
+                },
+                {
+                    "field": "Until: 20:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "Until: 22:00"
+                },
+                {
+                    "field": 0.2
+                },
+                {
+                    "field": "Until: 23:00"
+                },
+                {
+                    "field": 0.1
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.05
+                },
+                {
+                    "field": "For: WinterDesignDay"
+                },
+                {
+                    "field": "Until: 06:00"
+                },
+                {
+                    "field": 0.05
+                },
+                {
+                    "field": "Until: 08:00"
+                },
+                {
+                    "field": 0.1
+                },
+                {
+                    "field": "Until: 12:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "Until: 17:00"
+                },
+                {
+                    "field": 0.15
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.05
+                },
+                {
+                    "field": "For: Saturday Sunday Holidays AllOtherDays"
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.05
+                }
+            ],
+            "schedule_type_limits_name": "Any Number"
+        },
+        "Zone A Operation Schedule": {
+            "data": [
+                {
+                    "field": "Through: 12/31"
+                },
+                {
+                    "field": "For: AllDays"
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 1.0
+                }
+            ],
+            "schedule_type_limits_name": "On/Off"
+        },
+        "Zone A occupant Sch": {
+            "data": [
+                {
+                    "field": "Through: 12/31"
+                },
+                {
+                    "field": "For: Weekdays"
+                },
+                {
+                    "field": "Until: 05:00"
+                },
+                {
+                    "field": 0.0
+                },
+                {
+                    "field": "Until: 07:00"
+                },
+                {
+                    "field": 0.1
+                },
+                {
+                    "field": "Until: 08:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "Until: 12:00"
+                },
+                {
+                    "field": 0.95
+                },
+                {
+                    "field": "Until: 13:00"
+                },
+                {
+                    "field": 0.5
+                },
+                {
+                    "field": "Until: 17:00"
+                },
+                {
+                    "field": 0.95
+                },
+                {
+                    "field": "Until: 18:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.0
+                },
+                {
+                    "field": "For: SummerDesignDay"
+                },
+                {
+                    "field": "Until: 06:00"
+                },
+                {
+                    "field": 0.0
+                },
+                {
+                    "field": "Until: 22:00"
+                },
+                {
+                    "field": 1.0
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.05
+                },
+                {
+                    "field": "For: WinterDesignDay"
+                },
+                {
+                    "field": "Until: 06:00"
+                },
+                {
+                    "field": 0.0
+                },
+                {
+                    "field": "Until: 08:00"
+                },
+                {
+                    "field": 0.1
+                },
+                {
+                    "field": "Until: 12:00"
+                },
+                {
+                    "field": 0.3
+                },
+                {
+                    "field": "Until: 17:00"
+                },
+                {
+                    "field": 0.1
+                },
+                {
+                    "field": "Until: 19:00"
+                },
+                {
+                    "field": 0.05
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.0
+                },
+                {
+                    "field": "For: Saturday Sunday Holidays AllOtherDays"
+                },
+                {
+                    "field": "Until: 24:00"
+                },
+                {
+                    "field": 0.0
+                }
+            ],
+            "schedule_type_limits_name": "Any Number"
+        }
+    },
+    "Schedule:Constant": {
+        "VAV-1 Always On Schedule": {
+            "hourly_value": 1,
+            "schedule_type_limits_name": "Any Number"
+        },
+        "VAV-1 Supply Air Temp Schedule": {
+            "hourly_value": 12.777777777777779,
+            "schedule_type_limits_name": "Temperature"
+        },
+        "Zone A Activity Sch": {
+            "hourly_value": 120,
+            "schedule_type_limits_name": "Any Number"
+        },
+        "Zone A Cooling Setpoint Sch": {
+            "hourly_value": 23.88888888888889,
+            "schedule_type_limits_name": "Any Number"
+        },
+        "Zone A Heating Setpoint Sch": {
+            "hourly_value": 21.11111111111111,
+            "schedule_type_limits_name": "Any Number"
+        },
+        "Zone A Thermostat Type Sched": {
+            "hourly_value": 4,
+            "schedule_type_limits_name": "Control Type"
+        }
+    },
+    "ScheduleTypeLimits": {
+        "Any Number": {},
+        "Control Type": {
+            "lower_limit_value": 0,
+            "numeric_type": "Discrete",
+            "upper_limit_value": 4
+        },
+        "Fraction": {
+            "lower_limit_value": 0.0,
+            "numeric_type": "Continuous",
+            "upper_limit_value": 1.0
+        },
+        "Humidity": {
+            "lower_limit_value": 10,
+            "numeric_type": "Continuous",
+            "upper_limit_value": 90
+        },
+        "Number": {},
+        "On/Off": {
+            "lower_limit_value": 0,
+            "numeric_type": "Discrete",
+            "upper_limit_value": 1
+        },
+        "Temperature": {
+            "lower_limit_value": -60,
+            "numeric_type": "Continuous",
+            "upper_limit_value": 200
+        }
+    },
+    "SetpointManager:MixedAir": {
+        "VAV-1 HeatC Setpoint Manager": {
+            "control_variable": "Temperature",
+            "fan_inlet_node_name": "VAV-1 HeatC Air Outlet Node",
+            "fan_outlet_node_name": "VAV-1 Supply Equipment Outlet Node",
+            "reference_setpoint_node_name": "VAV-1 Supply Equipment Outlet Node",
+            "setpoint_node_or_nodelist_name": "VAV-1 HeatC Setpoint Nodes"
+        }
+    },
+    "SetpointManager:OutdoorAirPretreat": {
+        "VAV-1 OA Setpoint Manager": {
+            "control_variable": "Temperature",
+            "mixed_air_stream_node_name": "VAV-1 OA Outlet Node",
+            "outdoor_air_stream_node_name": "VAV-1 Outside Air Inlet Node",
+            "reference_setpoint_node_name": "VAV-1 OA Outlet Node",
+            "return_air_stream_node_name": "VAV-1 ExhFan-OA Node",
+            "setpoint_node_or_nodelist_name": "VAV-1 OA Setpoint Nodes"
+        }
+    },
+    "SetpointManager:Scheduled": {
+        "VAV-1 SAT Setpoint Manager": {
+            "control_variable": "Temperature",
+            "schedule_name": "VAV-1 Supply Air Temp Schedule",
+            "setpoint_node_or_nodelist_name": "VAV-1 Supply Equipment Outlet Node"
+        }
+    },
+    "ShadowCalculation": {
+        "ShadowCalculation 1": {
+            "maximum_figures_in_shadow_overlap_calculations": 15000,
+            "shading_calculation_method": "PolygonClipping",
+            "shading_calculation_update_frequency": 7,
+            "shading_calculation_update_frequency_method": "Periodic"
+        }
+    },
+    "SimulationControl": {
+        "SimulationControl 1": {
+            "do_hvac_sizing_simulation_for_sizing_periods": "No",
+            "do_plant_sizing_calculation": "Yes",
+            "do_system_sizing_calculation": "Yes",
+            "do_zone_sizing_calculation": "Yes",
+            "maximum_number_of_hvac_sizing_simulation_passes": 1,
+            "run_simulation_for_sizing_periods": "No",
+            "run_simulation_for_weather_file_run_periods": "Yes"
+        }
+    },
+    "Site:Location": {
+        "Chicago Ohare Intl Ap_IL_USA Design_Conditions": {
+            "elevation": 201.0,
+            "latitude": 41.98,
+            "longitude": -87.92,
+            "time_zone": -6.0
+        }
+    },
+    "Sizing:Parameters": {
+        "Sizing:Parameters 1": {
+            "cooling_sizing_factor": 1.15,
+            "heating_sizing_factor": 1.25,
+            "timesteps_in_averaging_window": 4
+        }
+    },
+    "Sizing:System": {
+        "Sizing:System 1": {
+            "100_outdoor_air_in_cooling": "No",
+            "100_outdoor_air_in_heating": "No",
+            "airloop_name": "VAV-1",
+            "central_cooling_capacity_control_method": "VAV",
+            "central_cooling_design_supply_air_humidity_ratio": 0.0085,
+            "central_cooling_design_supply_air_temperature": 12.777777777777779,
+            "central_heating_design_supply_air_humidity_ratio": 0.008,
+            "central_heating_design_supply_air_temperature": 12.777777777777779,
+            "central_heating_maximum_system_air_flow_ratio": 0.3,
+            "cooling_design_capacity": "Autosize",
+            "cooling_design_capacity_method": "CoolingDesignCapacity",
+            "cooling_supply_air_flow_rate_method": "DesignDay",
+            "design_outdoor_air_flow_rate": "Autosize",
+            "heating_design_capacity": "Autosize",
+            "heating_design_capacity_method": "HeatingDesignCapacity",
+            "heating_supply_air_flow_rate_method": "DesignDay",
+            "precool_design_humidity_ratio": 0.008,
+            "precool_design_temperature": 11.0,
+            "preheat_design_humidity_ratio": 0.008,
+            "preheat_design_temperature": 7.0,
+            "type_of_load_to_size_on": "Sensible",
+            "type_of_zone_sum_to_use": "Coincident",
+            "zone_maximum_outdoor_air_fraction": 1.0
+        }
+    },
+    "Sizing:Zone": {
+        "Sizing:Zone 1": {
+            "cooling_design_air_flow_method": "DesignDay",
+            "design_specification_outdoor_air_object_name": "Zone A Design OA",
+            "heating_design_air_flow_method": "DesignDay",
+            "zone_cooling_design_supply_air_humidity_ratio": 0.0085,
+            "zone_cooling_design_supply_air_temperature": 12.78,
+            "zone_cooling_design_supply_air_temperature_input_method": "SupplyAirTemperature",
+            "zone_heating_design_supply_air_humidity_ratio": 0.008,
+            "zone_heating_design_supply_air_temperature": 45.0,
+            "zone_heating_design_supply_air_temperature_input_method": "SupplyAirTemperature",
+            "zone_or_zonelist_name": "Zone A"
+        }
+    },
+    "SizingPeriod:DesignDay": {
+        "Chicago Ohare Intl Ap Ann Clg .4% Condns DB=>MWB": {
+            "ashrae_clear_sky_optical_depth_for_beam_irradiance_taub_": 0.455,
+            "ashrae_clear_sky_optical_depth_for_diffuse_irradiance_taud_": 2.05,
+            "barometric_pressure": 98934.0,
+            "daily_dry_bulb_temperature_range": 10.5,
+            "day_of_month": 21,
+            "day_type": "SummerDesignDay",
+            "daylight_saving_time_indicator": "No",
+            "dry_bulb_temperature_range_modifier_type": "DefaultMultipliers",
+            "humidity_condition_type": "WetBulb",
+            "maximum_dry_bulb_temperature": 33.3,
+            "month": 7,
+            "rain_indicator": "No",
+            "snow_indicator": "No",
+            "solar_model_indicator": "ASHRAETau",
+            "wetbulb_or_dewpoint_at_maximum_dry_bulb": 23.7,
+            "wind_direction": 230,
+            "wind_speed": 5.2
+        },
+        "Chicago Ohare Intl Ap Ann Htg 99.6% Condns DB": {
+            "barometric_pressure": 98934.0,
+            "daily_dry_bulb_temperature_range": 0.0,
+            "day_of_month": 21,
+            "day_type": "WinterDesignDay",
+            "daylight_saving_time_indicator": "No",
+            "dry_bulb_temperature_range_modifier_type": "DefaultMultipliers",
+            "humidity_condition_type": "WetBulb",
+            "maximum_dry_bulb_temperature": -20,
+            "month": 1,
+            "rain_indicator": "No",
+            "sky_clearness": 0.0,
+            "snow_indicator": "No",
+            "solar_model_indicator": "ASHRAEClearSky",
+            "wetbulb_or_dewpoint_at_maximum_dry_bulb": -20,
+            "wind_direction": 270,
+            "wind_speed": 4.9
+        }
+    },
+    "SurfaceConvectionAlgorithm:Inside": {
+        "SurfaceConvectionAlgorithm:Inside 1": {
+            "algorithm": "TARP"
+        }
+    },
+    "SurfaceConvectionAlgorithm:Outside": {
+        "SurfaceConvectionAlgorithm:Outside 1": {
+            "algorithm": "DOE-2"
+        }
+    },
+    "SurfaceProperty:OtherSideConditionsModel": {
+        "GapConvectionModel": {
+            "type_of_modeling": "GapConvectionRadiation"
+        }
+    },
+    "ThermostatSetpoint:DualSetpoint": {
+        "Zone A Setpoints": {
+            "cooling_setpoint_temperature_schedule_name": "Zone A Cooling Setpoint Sch",
+            "heating_setpoint_temperature_schedule_name": "Zone A Heating Setpoint Sch"
+        }
+    },
+    "Timestep": {
+        "Timestep 1": {
+            "number_of_timesteps_per_hour": 4
+        }
+    },
+    "Version": {
+        "Version 1": {
+            "version_identifier": "22.1"
+        }
+    },
+    "WindowMaterial:Glazing": {
+        "Clear Acrylic Plastic": {
+            "back_side_infrared_hemispherical_emissivity": 0.9,
+            "back_side_solar_reflectance_at_normal_incidence": 0.05,
+            "back_side_visible_reflectance_at_normal_incidence": 0.05,
+            "conductivity": 0.9,
+            "front_side_infrared_hemispherical_emissivity": 0.9,
+            "front_side_solar_reflectance_at_normal_incidence": 0.05,
+            "front_side_visible_reflectance_at_normal_incidence": 0.05,
+            "infrared_transmittance_at_normal_incidence": 0.0,
+            "optical_data_type": "SpectralAverage",
+            "solar_transmittance_at_normal_incidence": 0.92,
+            "thickness": 0.003,
+            "visible_transmittance_at_normal_incidence": 0.92
+        },
+        "Clear Glass": {
+            "back_side_infrared_hemispherical_emissivity": 0.84,
+            "back_side_solar_reflectance_at_normal_incidence": 0.075,
+            "back_side_visible_reflectance_at_normal_incidence": 0.081,
+            "conductivity": 0.9,
+            "front_side_infrared_hemispherical_emissivity": 0.84,
+            "front_side_solar_reflectance_at_normal_incidence": 0.075,
+            "front_side_visible_reflectance_at_normal_incidence": 0.081,
+            "infrared_transmittance_at_normal_incidence": 0.0,
+            "optical_data_type": "SpectralAverage",
+            "solar_transmittance_at_normal_incidence": 0.837,
+            "thickness": 0.003,
+            "visible_transmittance_at_normal_incidence": 0.898
+        },
+        "Diffusing Acrylic Plastic": {
+            "back_side_infrared_hemispherical_emissivity": 0.9,
+            "back_side_solar_reflectance_at_normal_incidence": 0.08,
+            "back_side_visible_reflectance_at_normal_incidence": 0.08,
+            "conductivity": 0.9,
+            "front_side_infrared_hemispherical_emissivity": 0.9,
+            "front_side_solar_reflectance_at_normal_incidence": 0.08,
+            "front_side_visible_reflectance_at_normal_incidence": 0.08,
+            "infrared_transmittance_at_normal_incidence": 0.0,
+            "optical_data_type": "SpectralAverage",
+            "solar_transmittance_at_normal_incidence": 0.9,
+            "thickness": 0.0022,
+            "visible_transmittance_at_normal_incidence": 0.9
+        }
+    },
+    "WindowMaterial:Shade": {
+        "Skylight Diffuser": {
+            "airflow_permeability": 0.0,
+            "bottom_opening_multiplier": 0.0,
+            "conductivity": 237,
+            "infrared_hemispherical_emissivity": 0.9,
+            "infrared_transmittance": 0.0,
+            "left_side_opening_multiplier": 0.0,
+            "right_side_opening_multiplier": 0.0,
+            "shade_to_glass_distance": 0.001,
+            "solar_reflectance": 0.49,
+            "solar_transmittance": 0.5,
+            "thickness": 0.0005,
+            "top_opening_multiplier": 0.0,
+            "visible_reflectance": 0.49,
+            "visible_transmittance": 0.5
+        },
+        "Window Shade": {
+            "airflow_permeability": 0.25,
+            "bottom_opening_multiplier": 0.0,
+            "conductivity": 237,
+            "infrared_hemispherical_emissivity": 0.9,
+            "infrared_transmittance": 0.0,
+            "left_side_opening_multiplier": 0.0,
+            "right_side_opening_multiplier": 0.0,
+            "shade_to_glass_distance": 0.001,
+            "solar_reflectance": 0.48,
+            "solar_transmittance": 0.5,
+            "thickness": 0.0005,
+            "top_opening_multiplier": 0.0,
+            "visible_reflectance": 0.48,
+            "visible_transmittance": 0.5
+        }
+    },
+    "WindowMaterial:SimpleGlazingSystem": {
+        "Air Space Glazing": {
+            "solar_heat_gain_coefficient": 0.99,
+            "u_factor": 7.0,
+            "visible_transmittance": 0.99
+        },
+        "Theoretical Glazing": {
+            "solar_heat_gain_coefficient": 0.4,
+            "u_factor": 3.1232254400908577,
+            "visible_transmittance": 0.4
+        },
+        "Theoretical Skylight Glazing": {
+            "solar_heat_gain_coefficient": 0.4,
+            "u_factor": 3.1232254400908577
+        }
+    },
+    "Zone": {
+        "Zone A": {
+            "direction_of_relative_north": 0.0,
+            "multiplier": 1,
+            "x_origin": 1.099756,
+            "y_origin": 1.472258,
+            "z_origin": 0.0
+        }
+    },
+    "ZoneAirHeatBalanceAlgorithm": {
+        "ZoneAirHeatBalanceAlgorithm 1": {
+            "algorithm": "AnalyticalSolution"
+        }
+    },
+    "ZoneControl:Thermostat": {
+        "Zone A Thermostat": {
+            "control_1_name": "Zone A Setpoints",
+            "control_1_object_type": "ThermostatSetpoint:DualSetpoint",
+            "control_type_schedule_name": "Zone A Thermostat Type Sched",
+            "zone_or_zonelist_name": "Zone A"
+        }
+    },
+    "ZoneHVAC:AirDistributionUnit": {
+        "Zone A Air Distribution Unit": {
+            "air_distribution_unit_outlet_node_name": "Zone A ATU Outlet Node",
+            "air_terminal_name": "Zone A ATU",
+            "air_terminal_object_type": "AirTerminal:SingleDuct:VAV:Reheat",
+            "constant_downstream_leakage_fraction": 0,
+            "nominal_upstream_leakage_fraction": 0
+        }
+    },
+    "ZoneHVAC:EquipmentConnections": {
+        "ZoneHVAC:EquipmentConnections 1": {
+            "zone_air_inlet_node_or_nodelist_name": "Zone A ATU Outlet Node",
+            "zone_air_node_name": "Zone A Air Node",
+            "zone_conditioning_equipment_list_name": "Zone A Equipment",
+            "zone_name": "Zone A",
+            "zone_return_air_node_or_nodelist_name": "Zone A Return Node"
+        }
+    },
+    "ZoneHVAC:EquipmentList": {
+        "Zone A Equipment": {
+            "equipment": [
+                {
+                    "zone_equipment_cooling_sequence": 1,
+                    "zone_equipment_heating_or_no_load_sequence": 1,
+                    "zone_equipment_name": "Zone A Air Distribution Unit",
+                    "zone_equipment_object_type": "ZoneHVAC:AirDistributionUnit"
+                }
+            ],
+            "load_distribution_scheme": "SequentialLoad"
+        }
+    },
+    "ZoneInfiltration:DesignFlowRate": {
+        "Zone A Infiltration": {
+            "design_flow_rate_calculation_method": "Flow/ExteriorArea",
+            "flow_per_exterior_surface_area": 0.00034951384671651583,
+            "schedule_name": "Zone A Infiltration Schedule",
+            "zone_or_zonelist_name": "Zone A"
+        }
+    }
+}
